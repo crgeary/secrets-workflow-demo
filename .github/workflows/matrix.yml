@@ -15,3 +15,4 @@ jobs:
     uses: crgeary/secrets-workflow-demo/.github/workflows/deploy.yml@main
     with:
       app-name: ${{ matrix.app-name }}
+    secrets: inherit
