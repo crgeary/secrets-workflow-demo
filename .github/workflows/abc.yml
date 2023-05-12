@@ -10,7 +10,7 @@ jobs:
   setenv:
     runs-on: ubuntu-latest
     outputs:
-      envs: ${{ steps.set.outputs.envs }}
+      envs: ${{ steps.encode.outputs.envs }}
     steps:
       - name: Set ENV
         id: "set"
@@ -26,4 +26,11 @@ jobs:
 
           EOT
 
-          echo "envs=$(gpg --symmetric --batch --passphrase "secret" --output - <(cat $tmpf) | base64 -w0)" >> $GITHUB_OUTPUT
+          echo "envs=$(echo $tmpf | base64)" >> $GITHUB_OUTPUT
+
+      - uses: cloudposse/github-action-secret-outputs@main
+        id: encode
+        with:
+          secret: "secret"
+          op: encode
+          in: ${{ steps.set.outputs.envs }}
