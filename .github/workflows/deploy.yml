@@ -9,7 +9,7 @@ on:
 
 jobs:
   setenvs:
-    uses: crgeary/secrets-workflow-demo/.github/workflows/xyz.yml@main
+    uses: crgeary/secrets-workflow-demo/.github/workflows/apps/xyz.yml@main
   deploy:
     runs-on: ubuntu-latest
     needs: setenvs
