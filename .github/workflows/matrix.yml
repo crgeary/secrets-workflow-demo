@@ -1,0 +1,17 @@
+name: Matrix
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  matrix:
+    strategy:
+      matrix:
+        app-name:
+          - abc
+          - xyz
+    uses: crgeary/secrets-workflow-demo/.github/workflows/deploy.yml@main
+    with:
+      app-name: ${{ matrix.app-name }}
