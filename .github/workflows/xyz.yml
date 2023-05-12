@@ -15,4 +15,13 @@ jobs:
       - name: Set ENV
         id: "set"
         run: |
-          echo "envs=abcxyz" >> $GITHUB_OUTPUT
+          tmpf=$(mktemp)
+
+          cat <<EOT >> $tmpf
+
+          PORT=3001
+          APP_NAME=xyz
+
+          EOT
+
+          echo "envs=$(cat $tmpf | base64 -e)" >> $GITHUB_OUTPUT
