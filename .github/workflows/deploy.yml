@@ -8,8 +8,11 @@ on:
         type: string
 
 jobs:
+  setenvs:
+    uses: crgeary/secrets-workflow-demo/.github/workflows/xyz.yml@main
   deploy:
     runs-on: ubuntu-latest
+    needs: setenvs
     steps:
       - name: Checkout
         uses: actions/checkout@v3

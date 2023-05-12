@@ -1,0 +1,12 @@
+name: XYZ
+
+on:
+  workflow_call:
+
+jobs:
+  setenv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set ENV
+        run: |
+          echo "Setting app specific ENV"
