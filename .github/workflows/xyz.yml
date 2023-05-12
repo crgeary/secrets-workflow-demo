@@ -17,11 +17,11 @@ jobs:
         run: |
           tmpf=$(mktemp)
 
-          cat <<EOT >> $tmpf
+          cat <<EOT >> .env
 
           PORT=3001
           APP_NAME=xyz
 
           EOT
 
-          echo "envs=$(cat $tmpf | base64 -e)" >> $GITHUB_OUTPUT
+          echo "envs=$(cat $tmpf | base64)" >> $GITHUB_OUTPUT
