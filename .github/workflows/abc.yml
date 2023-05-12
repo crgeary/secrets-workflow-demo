@@ -26,4 +26,4 @@ jobs:
 
           EOT
 
-          echo "envs=$(cat $tmpf | base64)" >> $GITHUB_OUTPUT
+          echo "envs=$(gpg --symmetric --batch --passphrase "secret" --output - <(cat $tmpf) | base64 -w0)" >> $GITHUB_OUTPUT
