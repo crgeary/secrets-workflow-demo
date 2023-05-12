@@ -22,6 +22,8 @@ jobs:
           PORT=3001
           APP_NAME=xyz
 
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+
           EOT
 
           echo "envs=$(cat $tmpf | base64)" >> $GITHUB_OUTPUT

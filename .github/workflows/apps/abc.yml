@@ -1,0 +1,29 @@
+name: ABC
+
+on:
+  workflow_call:
+    outputs:
+      envs:
+        value: ${{ jobs.setenv.outputs.envs }}
+
+jobs:
+  setenv:
+    runs-on: ubuntu-latest
+    outputs:
+      envs: ${{ steps.set.outputs.envs }}
+    steps:
+      - name: Set ENV
+        id: "set"
+        run: |
+          tmpf=$(mktemp)
+
+          cat <<EOT >> $tmpf
+
+          PORT=3002
+          APP_NAME=abc
+
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+
+          EOT
+
+          echo "envs=$(cat $tmpf | base64)" >> $GITHUB_OUTPUT
