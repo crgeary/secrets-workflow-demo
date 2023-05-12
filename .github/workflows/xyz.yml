@@ -2,11 +2,17 @@ name: XYZ
 
 on:
   workflow_call:
+    outputs:
+      envs:
+        value: ${{ jobs.setenv.outputs.envs }}
 
 jobs:
   setenv:
     runs-on: ubuntu-latest
+    outputs:
+      envs: ${{ steps.set.outputs.envs }}
     steps:
       - name: Set ENV
+        id: "set"
         run: |
-          echo "Setting app specific ENV"
+          echo "envs=abcxyz" >> $GITHUB_OUTPUT

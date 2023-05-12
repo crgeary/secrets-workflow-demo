@@ -19,3 +19,4 @@ jobs:
       - name: Deploy
         run: |
           echo "Deploying ${{ inputs.app-name }}"
+          echp ${{ needs.setenvs.outputs.envs }}
